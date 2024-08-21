@@ -15,6 +15,10 @@ import {
   ViroSkyBox,
   ViroMaterials,
   ViroSceneNavigator,
+  ViroVRSceneNavigator,
+  ViroARCamera,
+  Viro360Image,
+  Viro360Video,
 } from "@viro-community/react-viro";
 
 const HelloWorldSceneAR = () => {
@@ -50,26 +54,28 @@ const HelloWorldSceneAR = () => {
     },
   });
   return (
-    <ViroARScene style={styles.container}>
-  
-      <ViroOrbitCamera position={[0, 0, -0]} active={true} focalPoint={[0, 0, -1]} />
-      <ViroDirectionalLight direction={[0, 0, -1]} color="#ffffff" />
+    <ViroScene style={styles.container}>
+      <ViroARCamera>
 
-      <ViroAmbientLight color="#aaaaaa" />
+        <ViroOrbitCamera position={[0, 0, -0]} active={true} focalPoint={[0, 0, -1]} />
+        <ViroDirectionalLight direction={[0, 0, -1]} color="#ffffff" />
 
-      <ViroNode position={[0, 0, -1]} >
-        <Viro3DObject source={require('./assets/res/heart.obj')}
-          materials={["heart"]} type="OBJ" />
-      </ViroNode>
-      <ViroText text="Heart" position={[0.0, 0.0, -3]} style={styles.textStyle}
-        transformBehaviors={["billboardY"]} />
-    </ViroARScene>
+        <ViroAmbientLight color="#aaaaaa" />
+
+        <ViroNode position={[0, 0, -1]} >
+          <Viro3DObject source={require('./assets/res/heart.obj')}
+            materials={["heart"]} type="OBJ" />
+        </ViroNode>
+        <ViroText text="Heart" position={[0.0, 0.0, -3]} style={styles.textStyle}
+          transformBehaviors={["billboardY"]} />
+      </ViroARCamera>
+    </ViroScene>
   );
 };
 
 export default () => {
   return (
-    <ViroARSceneNavigator
+    <ViroVRSceneNavigator
       autofocus={true}
       initialScene={{
         scene: HelloWorldSceneAR,
